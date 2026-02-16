@@ -467,6 +467,7 @@ a {
   .footer-left {
     flex-flow: row;
   }
+
 }
 
 @media screen and (max-width: 767px) {
@@ -488,6 +489,10 @@ a {
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     flex-flow: column;
+  }
+
+  .custom-cursor{
+    display: none;
   }
 
   .footer-wrapper {
