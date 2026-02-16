@@ -1,0 +1,107 @@
+
+/* Clock wrapper */
+.timezone-clock {
+  display: inline-flex;
+  align-items: baseline;
+  font-variant-numeric: tabular-nums; /* keeps numbers aligned */
+}
+/* Blinking colon */
+.clock-colon {
+  animation: blink 1s steps(1, start) infinite;
+  margin: 0 0.1em;
+}
+/* Slightly muted label */
+.clock-meta {
+  color: rgba(0, 0, 0, 0.55); /* adjust for dark/light mode */
+  margin-left: 0.25em;
+}
+/* Blink animation */
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+/* Accessibility: respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .clock-colon {
+    animation: none;
+  }
+}
+/* ===== HERO AUTO SLIDING IMAGES (MARQUEE) ===== */
+/* Wrapper: clips the animation */
+.hero-images-wrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+/* Track: moves horizontally */
+.hero-images-track {
+  display: flex;
+  align-items: center;
+  gap: 2rem;                 /* space between images */
+  width: max-content;        /* critical for marquee */
+  animation: hero-marquee 25s linear infinite;
+}
+/* Images */
+.hero-images-track img {
+  height: 294px;             /* adjust as needed */
+  width: auto;
+  flex-shrink: 0;            /* prevents image shrinking */
+  display: block;
+}
+/* Animation */
+@keyframes hero-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+/* Optional: pause on hover */
+.hero-images-wrapper:hover .hero-images-track {
+  animation-play-state: paused;
+}
+/* Accessibility: respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-images-track {
+    animation: none;
+    transform: none;
+  }
+}
+
+/* Custom Cursor */
+
+/* ================================
+   GLOBAL OVERRIDES
+================================ */
+
+body {
+  cursor: none;
+}
+
+
+/* ================================
+   CUSTOM CURSOR
+================================ */
+
+.custom-cursor {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgb(255, 255, 255);
+  position: fixed;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;mix-blend-mode: difference;
+}
+
+
+
+/* ================================
+   PAGE TRANSITION TWEAKS
+================================ */
+
+[data-barba="container"] {
+  will-change: opacity, transform;
+}

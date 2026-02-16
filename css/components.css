@@ -92,7 +92,7 @@ html.w-mod-touch * {
   border: 0;
   line-height: inherit;
   text-decoration: none;
-  cursor: pointer;
+  /* cursor: pointer; */
   border-radius: 0;
 }
 input.w-button {
