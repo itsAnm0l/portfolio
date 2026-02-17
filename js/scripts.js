@@ -56,7 +56,7 @@ function initBarba() {
       async enter(data) {
         gsap.from(data.next.container, {
           opacity: 0,
-          y: 20,
+          y: -20,
           duration: 0.4
         });
       }
