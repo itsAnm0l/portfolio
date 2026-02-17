@@ -39,31 +39,40 @@ document.addEventListener("DOMContentLoaded", function () {
 /* =========================================
    BARBA PAGE TRANSITIONS
 ========================================= */
-
 function initBarba() {
 
   if (typeof barba === "undefined") return;
 
   barba.init({
+
     transitions: [{
-      async leave(data) {
-        await gsap.to(data.current.container, {
+
+      leave(data) {
+        return gsap.to(data.current.container, {
           opacity: 0,
           y: -20,
           duration: 0.4
         });
       },
-      async enter(data) {
-        gsap.from(data.next.container, {
+
+      enter(data) {
+
+        // 🔥 Force scroll reset immediately
+        window.scrollTo(0, 0);
+
+        return gsap.from(data.next.container, {
           opacity: 0,
-          y: -20,
+          y: 20,
           duration: 0.4
         });
       }
+
     }]
+
   });
 
 }
+
 
 
 /* =========================================
