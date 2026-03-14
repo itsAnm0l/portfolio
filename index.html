@@ -1,4 +1,4 @@
-<!DOCTYPE html><!--  Last Published: Sat Mar 14 2026 13:38:50 GMT+0000 (Coordinated Universal Time)  -->
+<!DOCTYPE html><!--  Last Published: Sat Mar 14 2026 16:38:07 GMT+0000 (Coordinated Universal Time)  -->
 <html data-wf-page="696de0f230f42d347ddee6c1" data-wf-site="696de0f130f42d347ddee6b7">
 <head>
   <meta charset="utf-8">
@@ -57,7 +57,7 @@
 </script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
   <style>
-  /* 1. Global Smooth Scroll Setup */
+  /* 1. Lenis */
   html.lenis { height: auto; }
   .lenis.lenis-smooth { scroll-behavior: auto !important; }
   .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
@@ -80,36 +80,23 @@
   @media (pointer: fine) {
     .custom-cursor { display: block; }
     *, *::before, *::after { cursor: none !important; }
-    a, button, .swiper-pagination-bullet { cursor: none !important; }
   }
-  /* 3. Page Transition Curtain */
-  .page-transition-layer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #0a0a0a;
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
-    transform: translateY(-100%);
-    will-change: transform;
-  }
-  .curtain-label {
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 14px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-  /* 4. Swiper & Reveal Essentials */
+  /* 3. Swiper */
   .swiper-slide { opacity: 0 !important; transition: opacity 0.6s ease; }
   .swiper-slide-active { opacity: 1 !important; }
   .line-wrapper { overflow: hidden; display: block; }
-  .swiper-pagination-bullet { width: 32px; height: 2px; border-radius: 0px; background: rgba(255, 255, 255, 0.2); opacity: 1; transition: all 0.4s ease; margin-right: 12px !important; }
+  .swiper-pagination-bullet { width: 32px; height: 2px; border-radius: 0; background: rgba(255,255,255,0.2); opacity: 1; transition: all 0.4s ease; margin-right: 12px !important; }
   .swiper-pagination-bullet-active { background: #ffffff; width: 48px; }
+  /* 4. Page arrival */
+  body {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  body.page-ready {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
 </style>
 </head>
 <body data-barba="wrapper" class="body">
@@ -187,7 +174,7 @@
   <div data-page-label="Hello" data-barba="container" class="page-wrapper">
     <section>
       <div class="container-xl">
-        <div class="hero-nav">
+        <div class="hero-nav div-block-4">
           <a id="w-node-_3789e500-878d-dd38-9a56-226a9d6a09b4-ff38b8ff" href="index.html" aria-current="page" class="home-link w-inline-block w--current"><img src="images/logo-top.svg" loading="lazy" width="Auto" alt="Designer logo of Anmol" class="home-logo"></a>
           <div id="w-node-f9aafd29-6886-6538-4c9f-efb2ff38b902-ff38b8ff" class="w-layout-hflex hero-nav_wrapper">
             <a href="/#work" class="hero-nav_link">Work</a>
@@ -196,7 +183,7 @@
             <a href="work/archive.html" class="hero-nav_link">Archive</a>
             <a href="mailto:Hello@itsanmol.com" class="hero-nav_link">Hello@itsanmol.com</a>
           </div>
-          <div class="menu-icon"><img src="images/menu-svg.svg" loading="lazy" data-w-id="73af371d-cb04-77bc-c93c-145fa7279fad" alt="Menu Icon
+          <div data-w-id="748f32bd-7bdf-26bd-1bc2-ae747a212a43" class="menu-icon"><img src="images/menu-svg.svg" loading="lazy" data-w-id="73af371d-cb04-77bc-c93c-145fa7279fad" alt="Menu Icon
 " class="image"></div>
         </div>
         <div class="hero-sec">
@@ -249,7 +236,7 @@
               <div class="swiper-slide">
                 <div class="sw-quote-wrapper">
                   <h3 class="quote-text">He captured the essence of our brand — bold, modern, and built for global growth.</h3>
-                  <div class="quote-author"><img src="images/David.jpg" loading="lazy" sizes="(max-width: 479px) 100vw, 384px" srcset="images/David-p-500.jpg 500w, images/David.jpg 800w" alt="Smiling bald man with a beard wearing a black shirt against a dark background." class="author-avatar">
+                  <div class="quote-author"><img src="images/David.jpg" loading="lazy" sizes="(max-width: 800px) 100vw, 800px" srcset="images/David-p-500.jpg 500w, images/David.jpg 800w" alt="Smiling bald man with a beard wearing a black shirt against a dark background." class="author-avatar">
                     <div>
                       <div>David Juan Gomez</div>
                       <div>Founder • Expansora</div>
@@ -350,7 +337,7 @@
             </div>
             <div class="feedback-item">
               <p>Anmol did a fantastic job designing the logo for Expansora. From the very beginning, he captured the essence of our brand—bold, modern, and built for global growth. His creative process was smooth, collaborative, and fast. We’re thrilled with the final result; it perfectly represents our mission to help brands expand beyond borders. He is a talented designer and brand strategist. Highly recommended!</p>
-              <div class="feedback-author"><img src="images/David.jpg" loading="lazy" sizes="(max-width: 479px) 100vw, 384px" srcset="images/David-p-500.jpg 500w, images/David.jpg 800w" alt="Smiling bald man with a beard wearing a black shirt against a dark background." class="author-avatar">
+              <div class="feedback-author"><img src="images/David.jpg" loading="lazy" sizes="(max-width: 800px) 100vw, 800px" srcset="images/David-p-500.jpg 500w, images/David.jpg 800w" alt="Smiling bald man with a beard wearing a black shirt against a dark background." class="author-avatar">
                 <div>
                   <div>David Juan Gomez</div>
                   <div>CoFounder • Expansora Ecommerce</div>
@@ -382,15 +369,15 @@
             <h3 id="w-node-_97671356-9cdd-aa93-7afb-abfd4b34d85b-7ddee6c1">What we can build</h3>
             <div class="services-list">
               <div id="w-node-d6259be9-f7e8-8cbb-41ee-490eec431832-7ddee6c1" class="service-card">
-                <h4>Webflow Design <br>&amp; Development</h4><img src="images/servicre-cards-4.png" loading="lazy" sizes="(max-width: 991px) 100vw, 864px, 100vw" srcset="images/servicre-cards-4-p-500.png 500w, images/servicre-cards-4-p-800.png 800w, images/servicre-cards-4-p-1080.png 1080w, images/servicre-cards-4-p-1600.png 1600w, images/servicre-cards-4.png 1800w" alt="User interface showing two adjacent rectangular sections with rounded corners; the left section is gray with a circle in the bottom-left corner, and the right section is white with a blue oval button near the bottom edge and a blue cursor pointing to the bottom-right corner.">
+                <h4>Webflow Design <br>&amp; Development</h4><img src="images/servicre-cards-4.png" loading="lazy" alt="User interface showing two adjacent rectangular sections with rounded corners; the left section is gray with a circle in the bottom-left corner, and the right section is white with a blue oval button near the bottom edge and a blue cursor pointing to the bottom-right corner.">
                 <p>I work with SaaS and AI teams to design interfaces that are clear, structured, and built around how real users think — not how the product roadmap is organised. Dashboards, onboarding flows, design systems, key screens. I design with implementation in mind from the first wireframe.</p>
               </div>
               <div id="w-node-_7f2cca28-b0fd-3a43-cb78-0c869092a37c-7ddee6c1" class="service-card service-card-2">
-                <h4>Product &amp; <br>Interface Design</h4><img src="images/servicre-cards-3.png" loading="lazy" sizes="(max-width: 991px) 100vw, 864px, 100vw" srcset="images/servicre-cards-3-p-500.png 500w, images/servicre-cards-3-p-800.png 800w, images/servicre-cards-3-p-1080.png 1080w, images/servicre-cards-3-p-1600.png 1600w, images/servicre-cards-3.png 1800w" alt="Diagram showing four white rectangular code blocks labeled &lt;div&gt; on the left, a blue circle with a white &#x27;W&#x27; logo in the center, and a white rounded rectangle with two stacked blue rounded rectangles on the right, symbolizing website layout or component separation.">
+                <h4>Product &amp; <br>Interface Design</h4><img src="images/servicre-cards-3.png" loading="lazy" alt="Diagram showing four white rectangular code blocks labeled &lt;div&gt; on the left, a blue circle with a white &#x27;W&#x27; logo in the center, and a white rounded rectangle with two stacked blue rounded rectangles on the right, symbolizing website layout or component separation.">
                 <p>I don&#x27;t just hand off a Figma file. I build in Webflow — structured, scalable, and close to the design intent. Landing pages, marketing sites, multi-page builds. If it needs custom interactions or code, I can handle that too.</p>
               </div>
               <div id="w-node-_41334af8-f017-5bb6-2607-10500df7303f-7ddee6c1" class="service-card service-card-3">
-                <h4>Design to Launch <br>&amp; Engagements</h4><img src="images/servicre-cards-5.png" loading="lazy" sizes="(max-width: 991px) 100vw, 864px, 100vw" srcset="images/servicre-cards-5-p-500.png 500w, images/servicre-cards-5-p-800.png 800w, images/servicre-cards-5-p-1080.png 1080w, images/servicre-cards-5-p-1600.png 1600w, images/servicre-cards-5.png 1800w" alt="Side-by-side comparison of two square grid layouts, one with empty gray circles and the other with blue icons of user additions, group, and celebration symbols.">
+                <h4>Design to Launch <br>&amp; Engagements</h4><img src="images/servicre-cards-5.png" loading="lazy" alt="Side-by-side comparison of two square grid layouts, one with empty gray circles and the other with blue icons of user additions, group, and celebration symbols.">
                 <p>I work with SaaS and AI teams to design interfaces that are clear, structured, and built around how real users think — not how the product roadmap is organised. Dashboards, onboarding flows, design systems, key screens. I design with implementation in mind from the first wireframe.</p>
               </div>
             </div>
@@ -403,7 +390,7 @@
         <div>
           <h3 id="process-title">Tri-Phase Process</h3>
           <div id="process-trigger" class="process-grid">
-            <div id="w-node-_8f9423a5-16c9-9baa-fccf-3d5bf9736e6e-7ddee6c1" class="process-image-wrapper js-process-item"><img src="images/w3.avif" loading="lazy" sizes="(max-width: 767px) 100vw, 492px, 100vw" srcset="images/w3-p-500.avif 500w, images/w3.avif 1024w" alt="Person at a computer with two screens showing a video call and documents, surrounded by question marks and thought bubbles labeled target audience and problem solving."></div>
+            <div id="w-node-_8f9423a5-16c9-9baa-fccf-3d5bf9736e6e-7ddee6c1" class="process-image-wrapper js-process-item"><img src="images/w3.avif" loading="lazy" alt="Person at a computer with two screens showing a video call and documents, surrounded by question marks and thought bubbles labeled target audience and problem solving."></div>
             <div id="w-node-_7d535ef6-ba18-a5d9-eaed-05d4be2f1c4e-7ddee6c1" class="process-card js-process-item">
               <h4 class="process-card-label">01 • Pre-Design</h4>
               <p class="process-card-description">Before a single frame opens in Figma, we get aligned. I dig into what you&#x27;re building, who it&#x27;s for, and what success actually looks like. Research, reference gathering, defining the problem worth solving. This phase is where most projects are won or lost — I take it seriously.</p>
@@ -416,8 +403,8 @@
               <h5 class="process-card-label">03 • Ship</h5>
               <p class="process-card-description">Design doesn&#x27;t end at handoff. I build in Webflow, review in the browser, and make sure what&#x27;s live matches what we designed. Clean files, clear handoff, no loose ends. You get a product ready for the world — not a Figma file ready for someone else to figure out.</p>
             </div>
-            <div id="w-node-_65cea519-6b38-ed78-c3ab-63e1626b2549-7ddee6c1" class="process-image-wrapper js-process-item"><img src="images/w1.avif" loading="lazy" sizes="(max-width: 767px) 100vw, 492px, 100vw" srcset="images/w1-p-500.avif 500w, images/w1.avif 1024w" alt="Illustration of a person with a question mark on their back working on two large computer screens showing UI design elements, wireframes, and flowcharts, surrounded by books, a mouse, and design tools like a compass, ruler, and color swatches."></div>
-            <div id="w-node-_4435245d-20a0-f334-5c07-e42705235c56-7ddee6c1" class="process-image-wrapper js-process-item"><img src="images/w2.avif" loading="lazy" sizes="(max-width: 767px) 100vw, 492px, 100vw" srcset="images/w2-p-500.avif 500w, images/w2.avif 1024w" alt="Two people standing on a dock pointing at a cargo ship labeled Amazing Product, with icons showing live status, verified webpage, and worldwide shipping."></div>
+            <div id="w-node-_65cea519-6b38-ed78-c3ab-63e1626b2549-7ddee6c1" class="process-image-wrapper js-process-item"><img src="images/w1.avif" loading="lazy" alt="Illustration of a person with a question mark on their back working on two large computer screens showing UI design elements, wireframes, and flowcharts, surrounded by books, a mouse, and design tools like a compass, ruler, and color swatches."></div>
+            <div id="w-node-_4435245d-20a0-f334-5c07-e42705235c56-7ddee6c1" class="process-image-wrapper js-process-item"><img src="images/w2.avif" loading="lazy" alt="Two people standing on a dock pointing at a cargo ship labeled Amazing Product, with icons showing live status, verified webpage, and worldwide shipping."></div>
           </div>
         </div>
       </div>
@@ -425,10 +412,10 @@
     <section class="section">
       <div class="container-xl">
         <div class="cta-wrapper js-cta-trigger">
-          <h5>Got a Product that needs <br>to look and work the part</h5>
+          <h4>Got a Product that needs <br>to look and work the part</h4>
           <div class="cta-cal">
             <div id="w-node-_972be5d1-d8ae-ecf9-adca-7d29cea4c468-7ddee6c1" class="cta-right">
-              <h6>I&#x27;m currently taking on new projects. If you&#x27;re building something early-stage and need a designer who can think through the problem and build the solution <br><br>— let&#x27;s talk. No lengthy proposals to start. Just a conversation.</h6>
+              <h5>I&#x27;m currently taking on new projects. If you&#x27;re building something early-stage and need a designer who can think through the problem and build the solution <br><br>— let&#x27;s talk. No lengthy proposals to start. Just a conversation.</h5>
               <h4>or</h4>
               <div>
                 <h4>Shoot me an Email</h4>
@@ -491,20 +478,21 @@ Cal("init", "30min", {origin:"https://app.cal.com"});
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/split-type"></script>
-  <script src="https://unpkg.com/@barba/core"></script>
   <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
   <script>
 gsap.registerPlugin(ScrollTrigger);
-// 1. INITIALIZE LENIS (Smooth Scroll)
+// ============================================================
+// LENIS
+// ============================================================
 const lenis = new Lenis({
   duration: 1.2,
   easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
 });
-// Sync ScrollTrigger with Lenis
-lenis.on('scroll', ScrollTrigger.update);
 gsap.ticker.add((time) => lenis.raf(time * 1000));
 gsap.ticker.lagSmoothing(0);
-// 2. CUSTOM CURSOR
+// ============================================================
+// CUSTOM CURSOR
+// ============================================================
 const cursorEl = document.createElement('div');
 cursorEl.classList.add('custom-cursor');
 document.body.appendChild(cursorEl);
@@ -514,99 +502,180 @@ window.addEventListener('mousemove', (e) => {
   xTo(e.clientX);
   yTo(e.clientY);
 });
-// 3. THE ANIMATION ENGINE
-function initPageScripts() {
-  // Kill old triggers to prevent ghost scrolling
-  ScrollTrigger.getAll().forEach(t => t.kill());
-  // --- TESTIMONIALS ---
+document.addEventListener('mouseover', (e) => {
+  if (e.target.closest('a, button, [data-cursor-hover]')) {
+    gsap.to(cursorEl, { scale: 1.5, duration: 0.3, ease: 'power2.out' });
+  }
+});
+document.addEventListener('mouseout', (e) => {
+  if (e.target.closest('a, button, [data-cursor-hover]')) {
+    gsap.to(cursorEl, { scale: 1, duration: 0.3, ease: 'power2.out' });
+  }
+});
+// ============================================================
+// PAGE ANIMATIONS
+// ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+  // --- TESTIMONIAL SLIDER ---
+  let typeSplit;
+  function animateSlide(activeSlide) {
+    const quoteElement = activeSlide.querySelector('.quote-text');
+    if (!quoteElement) return;
+    if (typeSplit) typeSplit.revert();
+    gsap.set(quoteElement, { opacity: 1 });
+    typeSplit = new SplitType(quoteElement, { types: 'lines', lineClass: 'line-child' });
+    typeSplit.lines.forEach(line => {
+      const wrapper = document.createElement('div');
+      wrapper.style.overflow = 'hidden';
+      wrapper.style.display = 'block';
+      line.parentNode.insertBefore(wrapper, line);
+      wrapper.appendChild(line);
+    });
+    gsap.set(typeSplit.lines, { y: "105%" });
+    gsap.set(activeSlide.querySelectorAll('.author-name, .author-title, img'), { opacity: 0, y: 10 });
+    const tl = gsap.timeline();
+    tl.to(typeSplit.lines, { y: "0%", duration: 1, stagger: 0.1, ease: "power4.out" })
+      .to(activeSlide.querySelectorAll('.author-name, .author-title, img'), { opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: "power2.out" }, "-=0.7");
+  }
   if (document.querySelector('.swiper')) {
-    let typeSplit;
-    const animateSlide = (activeSlide) => {
-      const quote = activeSlide.querySelector('.quote-text');
-      if (!quote) return;
-      if (typeSplit) typeSplit.revert();
-      typeSplit = new SplitType(quote, { types: 'lines' });
-      typeSplit.lines.forEach(l => {
-        const wrap = document.createElement('div');
-        wrap.className = 'line-wrapper';
-        l.parentNode.insertBefore(wrap, l);
-        wrap.appendChild(l);
-      });
-      gsap.from(typeSplit.lines, { yPercent: 105, duration: 1, stagger: 0.1, ease: "power4.out" });
-      gsap.from(activeSlide.querySelectorAll('.author-name, .author-title, img'), { opacity: 0, y: 15, duration: 0.8, stagger: 0.1, ease: "power2.out" }, "-=0.6");
-    };
     new Swiper('.swiper', {
-      effect: 'fade', crossFade: true, loop: true,
-      autoplay: { delay: 6000 },
+      effect: 'fade', crossFade: true, speed: 800, loop: true,
+      autoplay: { delay: 6000, disableOnInteraction: false },
       pagination: { el: '.swiper-pagination', clickable: true },
       on: {
-        init: function() { animateSlide(this.slides[this.activeIndex]); },
-        slideChangeTransitionStart: function() { animateSlide(this.slides[this.activeIndex]); }
+        init: function () { animateSlide(this.slides[this.activeIndex]); },
+        slideChangeTransitionStart: function () {
+          gsap.killTweensOf(".line-child");
+          animateSlide(this.slides[this.activeIndex]);
+        }
       }
     });
   }
-  // --- BATCH REVEALS (Work, Feedback, Services) ---
-  const reveals = [".work-item", ".feedback-item", ".service-card"];
-  reveals.forEach(selector => {
-    if (document.querySelector(selector)) {
-      ScrollTrigger.batch(selector, {
-        start: "top 85%",
-        onEnter: batch => gsap.from(batch, { opacity: 0, y: 40, stagger: 0.15, duration: 1, ease: "power4.out" })
+  // --- WORK SECTION ---
+  gsap.from(".work-header", {
+    scrollTrigger: { trigger: ".work-header", start: "top 85%" },
+    opacity: 0, y: 30, duration: 1, ease: "power3.out"
+  });
+  ScrollTrigger.batch(".work-item", {
+    start: "top 85%",
+    onEnter: batch => gsap.from(batch, { opacity: 0, y: 40, stagger: 0.15, duration: 1, ease: "power4.out", overwrite: true })
+  });
+  document.querySelectorAll('.work-item').forEach((item) => {
+    const img = item.querySelector('img');
+    if (img) {
+      gsap.from(img, {
+        scrollTrigger: { trigger: item, start: "top 95%", toggleActions: "play none none reverse" },
+        scale: 1.2, duration: 1.5, ease: "expo.out"
       });
     }
   });
-  // --- PARALLAX IMAGES ---
-  document.querySelectorAll('.process-image-wrapper img').forEach(img => {
+  // --- FEEDBACK ---
+  gsap.from(".feedback-warpper h3", {
+    scrollTrigger: { trigger: ".feedback-warpper", start: "top 85%" },
+    opacity: 0, x: -30, duration: 1.2, ease: "power3.out"
+  });
+  gsap.from(".feedback-item", {
+    scrollTrigger: { trigger: ".feedback-list", start: "top 80%" },
+    opacity: 0, y: 60, stagger: 0.2, duration: 1.2, ease: "power4.out"
+  });
+  // --- DELIGHT ---
+  gsap.from(".js-quote-line", {
+    scrollTrigger: { trigger: ".js-quote-section", start: "top 75%", end: "bottom 25%", scrub: 1 },
+    yPercent: 100, opacity: 0, stagger: 0.2, ease: "power3.out"
+  });
+  // --- SERVICES ---
+  gsap.from(".services-wrapper h3", {
+    scrollTrigger: { trigger: ".services-section", start: "top 85%" },
+    opacity: 0, y: 20, duration: 1, ease: "power3.out"
+  });
+  gsap.from(".service-card", {
+    scrollTrigger: { trigger: ".services-list", start: "top 80%" },
+    opacity: 0, y: 40, scale: 0.95, duration: 1.2, stagger: 0.2, ease: "power4.out"
+  });
+  // --- PROCESS ---
+  const processTitle = document.getElementById("process-title");
+  if (processTitle) {
+    gsap.from(processTitle, {
+      scrollTrigger: { trigger: "#process-trigger", start: "top 90%" },
+      opacity: 0, y: 20, duration: 1, ease: "power3.out"
+    });
+  }
+  const processItems = document.querySelectorAll(".js-process-item");
+  if (processItems.length > 0) {
+    gsap.from(processItems, {
+      scrollTrigger: { trigger: "#process-trigger", start: "top 80%" },
+      opacity: 0, y: 40, scale: 0.98, duration: 1.1, stagger: 0.15, ease: "power4.out",
+      onStart: function () {
+        processItems.forEach(el => {
+          if (window.getComputedStyle(el).display === 'none') {
+            gsap.set(el, { opacity: 1, y: 0, scale: 1 });
+          }
+        });
+      }
+    });
+  }
+  document.querySelectorAll('.process-image-wrapper img').forEach((img) => {
     gsap.to(img, {
-      scrollTrigger: { trigger: img, start: "top bottom", end: "bottom top", scrub: true },
-      y: -40, ease: "none"
+      scrollTrigger: { trigger: img, start: "top bottom", end: "bottom top", scrub: 0.5 },
+      y: -30, ease: "none"
     });
   });
+  // --- CTA & EMAIL ---
+  const ctaGrid = document.querySelector(".cta-cal");
+  if (ctaGrid) {
+    const ctaTl = gsap.timeline({ scrollTrigger: { trigger: ctaGrid, start: "top 85%" } });
+    ctaTl.from(".cta-right > *", { opacity: 0, y: 30, stagger: 0.15, duration: 1, ease: "power3.out" })
+         .from(".cal-embed", { opacity: 0, x: 20, duration: 1.2, ease: "power2.out" }, "-=0.8");
+  }
+  const emailContainer = document.querySelector('.js-email-container');
+  const emailTextNode = document.querySelector('.js-email-text');
+  const copyIcon = document.querySelector('.js-copy-icon');
+  if (emailContainer && emailTextNode) {
+    const originalEmail = emailTextNode.innerText;
+    emailContainer.addEventListener("click", function () {
+      navigator.clipboard.writeText(originalEmail).then(() => {
+        emailTextNode.innerText = "Email Copied!";
+        gsap.to(emailContainer, { opacity: 0.5, duration: 0.2 });
+        if (copyIcon) gsap.to(copyIcon, { scale: 1.2, duration: 0.1, yoyo: true, repeat: 1 });
+        setTimeout(() => {
+          emailTextNode.innerText = originalEmail;
+          gsap.to(emailContainer, { opacity: 0.8, duration: 0.4 });
+        }, 2000);
+      });
+    });
+  }
+  // --- FOOTER ---
+  const footerTl = gsap.timeline({
+    scrollTrigger: { trigger: ".footer-section", start: "top 75%", toggleActions: "play none none none" }
+  });
+  footerTl
+    .from(".footer-container > img", { opacity: 0, y: 20, duration: 0.8, ease: "power2.out" })
+    .from(".footer-link_wrapper", { opacity: 0, y: 15, stagger: 0.2, duration: 0.8, ease: "power2.out" }, "-=0.4")
+    .from(".footer-quote-wrapper, .footer-meta", { opacity: 0, scale: 0.95, y: 20, stagger: 0.2, duration: 1, ease: "expo.out" }, "-=0.5");
   // --- CLOCK ---
-  if (document.querySelector('.clock-hours')) {
-    const updateClock = () => {
+  const hoursEl = document.querySelector(".clock-hours");
+  const minutesEl = document.querySelector(".clock-minutes");
+  const metaEl = document.querySelector(".clock-meta");
+  if (hoursEl && minutesEl && metaEl) {
+    function updateClock() {
       const now = new Date();
-      const parts = new Intl.DateTimeFormat("en-US", { timeZone: "Asia/Kolkata", hour: "numeric", minute: "2-digit", hour12: true }).formatToParts(now);
-      document.querySelector(".clock-hours").textContent = parts.find(p => p.type === "hour").value;
-      document.querySelector(".clock-minutes").textContent = parts.find(p => p.type === "minute").value;
-      document.querySelector(".clock-meta").textContent = ` ${parts.find(p => p.type === "dayPeriod").value} (IST)`;
-    };
+      const parts = new Intl.DateTimeFormat("en-US", {
+        timeZone: "Asia/Kolkata", hour: "numeric", minute: "2-digit", hour12: true
+      }).formatToParts(now);
+      hoursEl.textContent = parts.find(p => p.type === "hour").value;
+      minutesEl.textContent = parts.find(p => p.type === "minute").value;
+      metaEl.textContent = ` ${parts.find(p => p.type === "dayPeriod").value} (IST)`;
+    }
     updateClock();
     setInterval(updateClock, 1000);
   }
-  // Refresh ScrollTrigger to catch new page height
   ScrollTrigger.refresh();
-}
-// 4. BARBA TRANSITIONS
-barba.init({
-  sync: true,
-  transitions: [{
-    name: 'curtain-transition',
-    async leave(data) {
-      const done = this.async();
-      gsap.to('.page-transition-layer', { 
-        yPercent: 100, 
-        duration: 0.8, 
-        ease: "expo.inOut", 
-        onComplete: done 
-      });
-    },
-    async enter(data) {
-      window.scrollTo(0, 0);
-      lenis.scrollTo(0, { immediate: true });
-      initPageScripts();
-      gsap.to('.page-transition-layer', { 
-        yPercent: 200, 
-        duration: 0.8, 
-        ease: "expo.inOut",
-        onComplete: () => gsap.set('.page-transition-layer', { yPercent: -100 })
-      });
-    }
-  }]
 });
-// Initial run
-document.addEventListener("DOMContentLoaded", () => {
-  initPageScripts();
+// ============================================================
+// PAGE ARRIVAL
+// ============================================================
+window.addEventListener('load', () => {
+  document.body.classList.add('page-ready');
 });
 </script>
 </body>

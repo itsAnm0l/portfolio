@@ -1,4 +1,4 @@
-<!DOCTYPE html><!--  Last Published: Sat Mar 14 2026 13:38:50 GMT+0000 (Coordinated Universal Time)  -->
+<!DOCTYPE html><!--  Last Published: Sat Mar 14 2026 16:38:07 GMT+0000 (Coordinated Universal Time)  -->
 <html data-wf-page="69a10884a60a672f7ab9335b" data-wf-site="696de0f130f42d347ddee6b7">
 <head>
   <meta charset="utf-8">
@@ -22,7 +22,7 @@
 </script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
   <style>
-  /* 1. Global Smooth Scroll Setup */
+  /* 1. Lenis */
   html.lenis { height: auto; }
   .lenis.lenis-smooth { scroll-behavior: auto !important; }
   .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
@@ -45,36 +45,23 @@
   @media (pointer: fine) {
     .custom-cursor { display: block; }
     *, *::before, *::after { cursor: none !important; }
-    a, button, .swiper-pagination-bullet { cursor: none !important; }
   }
-  /* 3. Page Transition Curtain */
-  .page-transition-layer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #0a0a0a;
-    z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
-    transform: translateY(-100%);
-    will-change: transform;
-  }
-  .curtain-label {
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 14px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-  /* 4. Swiper & Reveal Essentials */
+  /* 3. Swiper */
   .swiper-slide { opacity: 0 !important; transition: opacity 0.6s ease; }
   .swiper-slide-active { opacity: 1 !important; }
   .line-wrapper { overflow: hidden; display: block; }
-  .swiper-pagination-bullet { width: 32px; height: 2px; border-radius: 0px; background: rgba(255, 255, 255, 0.2); opacity: 1; transition: all 0.4s ease; margin-right: 12px !important; }
+  .swiper-pagination-bullet { width: 32px; height: 2px; border-radius: 0; background: rgba(255,255,255,0.2); opacity: 1; transition: all 0.4s ease; margin-right: 12px !important; }
   .swiper-pagination-bullet-active { background: #ffffff; width: 48px; }
+  /* 4. Page arrival */
+  body {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  body.page-ready {
+    opacity: 1;
+    transform: translateY(0px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
 </style>
 </head>
 <body>
@@ -90,20 +77,21 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/split-type"></script>
-  <script src="https://unpkg.com/@barba/core"></script>
   <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
   <script>
 gsap.registerPlugin(ScrollTrigger);
-// 1. INITIALIZE LENIS (Smooth Scroll)
+// ============================================================
+// LENIS
+// ============================================================
 const lenis = new Lenis({
   duration: 1.2,
   easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
 });
-// Sync ScrollTrigger with Lenis
-lenis.on('scroll', ScrollTrigger.update);
 gsap.ticker.add((time) => lenis.raf(time * 1000));
 gsap.ticker.lagSmoothing(0);
-// 2. CUSTOM CURSOR
+// ============================================================
+// CUSTOM CURSOR
+// ============================================================
 const cursorEl = document.createElement('div');
 cursorEl.classList.add('custom-cursor');
 document.body.appendChild(cursorEl);
@@ -113,99 +101,180 @@ window.addEventListener('mousemove', (e) => {
   xTo(e.clientX);
   yTo(e.clientY);
 });
-// 3. THE ANIMATION ENGINE
-function initPageScripts() {
-  // Kill old triggers to prevent ghost scrolling
-  ScrollTrigger.getAll().forEach(t => t.kill());
-  // --- TESTIMONIALS ---
+document.addEventListener('mouseover', (e) => {
+  if (e.target.closest('a, button, [data-cursor-hover]')) {
+    gsap.to(cursorEl, { scale: 1.5, duration: 0.3, ease: 'power2.out' });
+  }
+});
+document.addEventListener('mouseout', (e) => {
+  if (e.target.closest('a, button, [data-cursor-hover]')) {
+    gsap.to(cursorEl, { scale: 1, duration: 0.3, ease: 'power2.out' });
+  }
+});
+// ============================================================
+// PAGE ANIMATIONS
+// ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+  // --- TESTIMONIAL SLIDER ---
+  let typeSplit;
+  function animateSlide(activeSlide) {
+    const quoteElement = activeSlide.querySelector('.quote-text');
+    if (!quoteElement) return;
+    if (typeSplit) typeSplit.revert();
+    gsap.set(quoteElement, { opacity: 1 });
+    typeSplit = new SplitType(quoteElement, { types: 'lines', lineClass: 'line-child' });
+    typeSplit.lines.forEach(line => {
+      const wrapper = document.createElement('div');
+      wrapper.style.overflow = 'hidden';
+      wrapper.style.display = 'block';
+      line.parentNode.insertBefore(wrapper, line);
+      wrapper.appendChild(line);
+    });
+    gsap.set(typeSplit.lines, { y: "105%" });
+    gsap.set(activeSlide.querySelectorAll('.author-name, .author-title, img'), { opacity: 0, y: 10 });
+    const tl = gsap.timeline();
+    tl.to(typeSplit.lines, { y: "0%", duration: 1, stagger: 0.1, ease: "power4.out" })
+      .to(activeSlide.querySelectorAll('.author-name, .author-title, img'), { opacity: 1, y: 0, duration: 0.8, stagger: 0.1, ease: "power2.out" }, "-=0.7");
+  }
   if (document.querySelector('.swiper')) {
-    let typeSplit;
-    const animateSlide = (activeSlide) => {
-      const quote = activeSlide.querySelector('.quote-text');
-      if (!quote) return;
-      if (typeSplit) typeSplit.revert();
-      typeSplit = new SplitType(quote, { types: 'lines' });
-      typeSplit.lines.forEach(l => {
-        const wrap = document.createElement('div');
-        wrap.className = 'line-wrapper';
-        l.parentNode.insertBefore(wrap, l);
-        wrap.appendChild(l);
-      });
-      gsap.from(typeSplit.lines, { yPercent: 105, duration: 1, stagger: 0.1, ease: "power4.out" });
-      gsap.from(activeSlide.querySelectorAll('.author-name, .author-title, img'), { opacity: 0, y: 15, duration: 0.8, stagger: 0.1, ease: "power2.out" }, "-=0.6");
-    };
     new Swiper('.swiper', {
-      effect: 'fade', crossFade: true, loop: true,
-      autoplay: { delay: 6000 },
+      effect: 'fade', crossFade: true, speed: 800, loop: true,
+      autoplay: { delay: 6000, disableOnInteraction: false },
       pagination: { el: '.swiper-pagination', clickable: true },
       on: {
-        init: function() { animateSlide(this.slides[this.activeIndex]); },
-        slideChangeTransitionStart: function() { animateSlide(this.slides[this.activeIndex]); }
+        init: function () { animateSlide(this.slides[this.activeIndex]); },
+        slideChangeTransitionStart: function () {
+          gsap.killTweensOf(".line-child");
+          animateSlide(this.slides[this.activeIndex]);
+        }
       }
     });
   }
-  // --- BATCH REVEALS (Work, Feedback, Services) ---
-  const reveals = [".work-item", ".feedback-item", ".service-card"];
-  reveals.forEach(selector => {
-    if (document.querySelector(selector)) {
-      ScrollTrigger.batch(selector, {
-        start: "top 85%",
-        onEnter: batch => gsap.from(batch, { opacity: 0, y: 40, stagger: 0.15, duration: 1, ease: "power4.out" })
+  // --- WORK SECTION ---
+  gsap.from(".work-header", {
+    scrollTrigger: { trigger: ".work-header", start: "top 85%" },
+    opacity: 0, y: 30, duration: 1, ease: "power3.out"
+  });
+  ScrollTrigger.batch(".work-item", {
+    start: "top 85%",
+    onEnter: batch => gsap.from(batch, { opacity: 0, y: 40, stagger: 0.15, duration: 1, ease: "power4.out", overwrite: true })
+  });
+  document.querySelectorAll('.work-item').forEach((item) => {
+    const img = item.querySelector('img');
+    if (img) {
+      gsap.from(img, {
+        scrollTrigger: { trigger: item, start: "top 95%", toggleActions: "play none none reverse" },
+        scale: 1.2, duration: 1.5, ease: "expo.out"
       });
     }
   });
-  // --- PARALLAX IMAGES ---
-  document.querySelectorAll('.process-image-wrapper img').forEach(img => {
+  // --- FEEDBACK ---
+  gsap.from(".feedback-warpper h3", {
+    scrollTrigger: { trigger: ".feedback-warpper", start: "top 85%" },
+    opacity: 0, x: -30, duration: 1.2, ease: "power3.out"
+  });
+  gsap.from(".feedback-item", {
+    scrollTrigger: { trigger: ".feedback-list", start: "top 80%" },
+    opacity: 0, y: 60, stagger: 0.2, duration: 1.2, ease: "power4.out"
+  });
+  // --- DELIGHT ---
+  gsap.from(".js-quote-line", {
+    scrollTrigger: { trigger: ".js-quote-section", start: "top 75%", end: "bottom 25%", scrub: 1 },
+    yPercent: 100, opacity: 0, stagger: 0.2, ease: "power3.out"
+  });
+  // --- SERVICES ---
+  gsap.from(".services-wrapper h3", {
+    scrollTrigger: { trigger: ".services-section", start: "top 85%" },
+    opacity: 0, y: 20, duration: 1, ease: "power3.out"
+  });
+  gsap.from(".service-card", {
+    scrollTrigger: { trigger: ".services-list", start: "top 80%" },
+    opacity: 0, y: 40, scale: 0.95, duration: 1.2, stagger: 0.2, ease: "power4.out"
+  });
+  // --- PROCESS ---
+  const processTitle = document.getElementById("process-title");
+  if (processTitle) {
+    gsap.from(processTitle, {
+      scrollTrigger: { trigger: "#process-trigger", start: "top 90%" },
+      opacity: 0, y: 20, duration: 1, ease: "power3.out"
+    });
+  }
+  const processItems = document.querySelectorAll(".js-process-item");
+  if (processItems.length > 0) {
+    gsap.from(processItems, {
+      scrollTrigger: { trigger: "#process-trigger", start: "top 80%" },
+      opacity: 0, y: 40, scale: 0.98, duration: 1.1, stagger: 0.15, ease: "power4.out",
+      onStart: function () {
+        processItems.forEach(el => {
+          if (window.getComputedStyle(el).display === 'none') {
+            gsap.set(el, { opacity: 1, y: 0, scale: 1 });
+          }
+        });
+      }
+    });
+  }
+  document.querySelectorAll('.process-image-wrapper img').forEach((img) => {
     gsap.to(img, {
-      scrollTrigger: { trigger: img, start: "top bottom", end: "bottom top", scrub: true },
-      y: -40, ease: "none"
+      scrollTrigger: { trigger: img, start: "top bottom", end: "bottom top", scrub: 0.5 },
+      y: -30, ease: "none"
     });
   });
+  // --- CTA & EMAIL ---
+  const ctaGrid = document.querySelector(".cta-cal");
+  if (ctaGrid) {
+    const ctaTl = gsap.timeline({ scrollTrigger: { trigger: ctaGrid, start: "top 85%" } });
+    ctaTl.from(".cta-right > *", { opacity: 0, y: 30, stagger: 0.15, duration: 1, ease: "power3.out" })
+         .from(".cal-embed", { opacity: 0, x: 20, duration: 1.2, ease: "power2.out" }, "-=0.8");
+  }
+  const emailContainer = document.querySelector('.js-email-container');
+  const emailTextNode = document.querySelector('.js-email-text');
+  const copyIcon = document.querySelector('.js-copy-icon');
+  if (emailContainer && emailTextNode) {
+    const originalEmail = emailTextNode.innerText;
+    emailContainer.addEventListener("click", function () {
+      navigator.clipboard.writeText(originalEmail).then(() => {
+        emailTextNode.innerText = "Email Copied!";
+        gsap.to(emailContainer, { opacity: 0.5, duration: 0.2 });
+        if (copyIcon) gsap.to(copyIcon, { scale: 1.2, duration: 0.1, yoyo: true, repeat: 1 });
+        setTimeout(() => {
+          emailTextNode.innerText = originalEmail;
+          gsap.to(emailContainer, { opacity: 0.8, duration: 0.4 });
+        }, 2000);
+      });
+    });
+  }
+  // --- FOOTER ---
+  const footerTl = gsap.timeline({
+    scrollTrigger: { trigger: ".footer-section", start: "top 75%", toggleActions: "play none none none" }
+  });
+  footerTl
+    .from(".footer-container > img", { opacity: 0, y: 20, duration: 0.8, ease: "power2.out" })
+    .from(".footer-link_wrapper", { opacity: 0, y: 15, stagger: 0.2, duration: 0.8, ease: "power2.out" }, "-=0.4")
+    .from(".footer-quote-wrapper, .footer-meta", { opacity: 0, scale: 0.95, y: 20, stagger: 0.2, duration: 1, ease: "expo.out" }, "-=0.5");
   // --- CLOCK ---
-  if (document.querySelector('.clock-hours')) {
-    const updateClock = () => {
+  const hoursEl = document.querySelector(".clock-hours");
+  const minutesEl = document.querySelector(".clock-minutes");
+  const metaEl = document.querySelector(".clock-meta");
+  if (hoursEl && minutesEl && metaEl) {
+    function updateClock() {
       const now = new Date();
-      const parts = new Intl.DateTimeFormat("en-US", { timeZone: "Asia/Kolkata", hour: "numeric", minute: "2-digit", hour12: true }).formatToParts(now);
-      document.querySelector(".clock-hours").textContent = parts.find(p => p.type === "hour").value;
-      document.querySelector(".clock-minutes").textContent = parts.find(p => p.type === "minute").value;
-      document.querySelector(".clock-meta").textContent = ` ${parts.find(p => p.type === "dayPeriod").value} (IST)`;
-    };
+      const parts = new Intl.DateTimeFormat("en-US", {
+        timeZone: "Asia/Kolkata", hour: "numeric", minute: "2-digit", hour12: true
+      }).formatToParts(now);
+      hoursEl.textContent = parts.find(p => p.type === "hour").value;
+      minutesEl.textContent = parts.find(p => p.type === "minute").value;
+      metaEl.textContent = ` ${parts.find(p => p.type === "dayPeriod").value} (IST)`;
+    }
     updateClock();
     setInterval(updateClock, 1000);
   }
-  // Refresh ScrollTrigger to catch new page height
   ScrollTrigger.refresh();
-}
-// 4. BARBA TRANSITIONS
-barba.init({
-  sync: true,
-  transitions: [{
-    name: 'curtain-transition',
-    async leave(data) {
-      const done = this.async();
-      gsap.to('.page-transition-layer', { 
-        yPercent: 100, 
-        duration: 0.8, 
-        ease: "expo.inOut", 
-        onComplete: done 
-      });
-    },
-    async enter(data) {
-      window.scrollTo(0, 0);
-      lenis.scrollTo(0, { immediate: true });
-      initPageScripts();
-      gsap.to('.page-transition-layer', { 
-        yPercent: 200, 
-        duration: 0.8, 
-        ease: "expo.inOut",
-        onComplete: () => gsap.set('.page-transition-layer', { yPercent: -100 })
-      });
-    }
-  }]
 });
-// Initial run
-document.addEventListener("DOMContentLoaded", () => {
-  initPageScripts();
+// ============================================================
+// PAGE ARRIVAL
+// ============================================================
+window.addEventListener('load', () => {
+  document.body.classList.add('page-ready');
 });
 </script>
 </body>

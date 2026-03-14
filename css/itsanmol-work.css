@@ -713,11 +713,15 @@ a {
 
   .hero-nav_wrapper {
     z-index: 1;
+    grid-column-gap: 1.5rem;
+    grid-row-gap: 1.5rem;
     background-color: var(--pearl-white);
     border-top: 1px solid #000;
     border-radius: 8px;
     flex-flow: column;
-    height: 100vh;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 85vh;
     margin-top: 79px;
     padding-top: 1.4rem;
     padding-left: 1rem;
@@ -767,7 +771,7 @@ a {
   }
 
   .menu-icon {
-    width: 24px;
+    width: 32px;
     display: block;
   }
 
@@ -820,6 +824,17 @@ a {
 
   .service-card.service-card-2, .service-card.service-card-3 {
     margin-top: 0;
+  }
+
+  .cta-right {
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+  }
+
+  .div-block-4 {
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 8px;
   }
 }
 
