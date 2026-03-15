@@ -62,25 +62,7 @@
   .lenis.lenis-smooth { scroll-behavior: auto !important; }
   .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
   /* 2. Custom Cursor - Desktop Only */
-  .custom-cursor {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #ffffff;
-    mix-blend-mode: difference;
-    pointer-events: none;
-    z-index: 99999;
-    will-change: transform;
-    transform: translate(-50%, -50%);
-  }
-  @media (pointer: fine) {
-    .custom-cursor { display: block; }
-    *, *::before, *::after { cursor: none !important; }
-  }
+     
   /* 3. Swiper */
   .swiper-slide { opacity: 0 !important; transition: opacity 0.6s ease; }
   .swiper-slide-active { opacity: 1 !important; }
@@ -378,7 +360,7 @@
               </div>
               <div id="w-node-_41334af8-f017-5bb6-2607-10500df7303f-7ddee6c1" class="service-card service-card-3">
                 <h4>Design to Launch <br>&amp; Engagements</h4><img src="images/servicre-cards-5.png" loading="lazy" alt="Side-by-side comparison of two square grid layouts, one with empty gray circles and the other with blue icons of user additions, group, and celebration symbols.">
-                <p>I work with SaaS and AI teams to design interfaces that are clear, structured, and built around how real users think — not how the product roadmap is organised. Dashboards, onboarding flows, design systems, key screens. I design with implementation in mind from the first wireframe.</p>
+                <p>I don't disappear after the design file is done. I stay involved through build, QA, and launch.Because design is iterative, not a one-time handoff. From A to Z, I'm in the loop, making improvements as the product evolves. What goes live actually matches what was designed and keeps getting better.</p>
               </div>
             </div>
           </div>
@@ -490,29 +472,7 @@ const lenis = new Lenis({
 });
 gsap.ticker.add((time) => lenis.raf(time * 1000));
 gsap.ticker.lagSmoothing(0);
-// ============================================================
-// CUSTOM CURSOR
-// ============================================================
-const cursorEl = document.createElement('div');
-cursorEl.classList.add('custom-cursor');
-document.body.appendChild(cursorEl);
-const xTo = gsap.quickTo(cursorEl, "x", { duration: 0.4, ease: "power3.out" });
-const yTo = gsap.quickTo(cursorEl, "y", { duration: 0.4, ease: "power3.out" });
-window.addEventListener('mousemove', (e) => {
-  xTo(e.clientX);
-  yTo(e.clientY);
-});
-document.addEventListener('mouseover', (e) => {
-  if (e.target.closest('a, button, [data-cursor-hover]')) {
-    gsap.to(cursorEl, { scale: 1.5, duration: 0.3, ease: 'power2.out' });
-  }
-});
-document.addEventListener('mouseout', (e) => {
-  if (e.target.closest('a, button, [data-cursor-hover]')) {
-    gsap.to(cursorEl, { scale: 1, duration: 0.3, ease: 'power2.out' });
-  }
-});
-// ============================================================
+    
 // PAGE ANIMATIONS
 // ============================================================
 document.addEventListener('DOMContentLoaded', () => {
