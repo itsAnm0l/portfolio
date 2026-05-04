@@ -79,26 +79,7 @@
   .lenis.lenis-smooth { scroll-behavior: auto !important; }
   .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
   /* 2. Custom Cursor - Desktop Only */
-  .custom-cursor {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: #ffffff;
-    mix-blend-mode: difference;
-    pointer-events: none;
-    z-index: 99999;
-    will-change: transform;
-    transform: translate(-50%, -50%);
-  }
-  @media (pointer: fine) {
-    .custom-cursor { display: block; }
-    *, *::before, *::after { cursor: none !important; }
-  }
-  /* 3. Swiper */
+    /* 3. Swiper */
   .swiper-slide { opacity: 0 !important; transition: opacity 0.6s ease; }
   .swiper-slide-active { opacity: 1 !important; }
   .line-wrapper { overflow: hidden; display: block; }

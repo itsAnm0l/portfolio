@@ -1798,3 +1798,10 @@ textarea.w-select {
     max-width: 100%;
   }
 }
+@media screen and (max-width: 479px) {
+}
+  .chip-space{
+    margin-bottom: 4px;
+  }
+
+/* In practice for your situation — since you're overriding a completely different class that Webflow doesn't touch — placement won't cause a conflict. But the habit of putting your custom code after generated code is correct practice and will save you headaches later. */
