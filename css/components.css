@@ -18,6 +18,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.p-mod{
+  max-width: 35ch;
+}
 .w-icon-slider-right:before {
   content: "\e600";
 }
