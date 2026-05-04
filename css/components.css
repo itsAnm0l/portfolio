@@ -1792,3 +1792,9 @@ textarea.w-select {
 .wf-layout-layout {
   display: grid;
 }
+@media screen and (max-width: 479px) {
+  .p-mod {
+    width: 100%;
+    max-width: 100%;
+  }
+}
